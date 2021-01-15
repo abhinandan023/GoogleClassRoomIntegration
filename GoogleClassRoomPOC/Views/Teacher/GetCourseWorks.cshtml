@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GoogleClassRoomPOC.Models.CourseWork>
+
+@{
+    ViewData["Title"] = "GetCourseWorks";
+}
+
+<h4>Assignments For the class :  @ViewData["ClassName"] </h4>
+
+<p>
+    <a asp-action="AddCourseWork" asp-route-courseId= "@ViewData["CourseId"]" >Create New Assignment</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                Submissions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Submissions", "GetSubmissions", new { courseId = item.CourseId,
+               courseWorkId = item.CourseWorkId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GoogleClassRoomPOC.Models.CourseWork>
+
+@{
+    ViewData["Title"] = "GetAssignment";
+}
+
+<h1>Assignment List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseWorkId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseWorkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Update Assignment", "EditAssignment", 
+                                new { courseWorkId = item.CourseWorkId,
+                                    CourseId= item.CourseId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
